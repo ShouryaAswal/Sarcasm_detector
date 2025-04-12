@@ -1,21 +1,23 @@
-# Base image with Python
+# Use lightweight Python image
 FROM python:3.9-slim
 
-# Set work directory
+# Set working directory
 WORKDIR /app
 
-# Copy app code
+# Copy all code into container
 COPY ./app /app
+COPY train_model.py .
+COPY test_model.py .
+COPY requirements.txt .
 
-# Install dependencies
+# Install dependencies from requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy model training script and run it
-COPY train_model.py .
+# Build and save the sarcasm model
 RUN python train_model.py
 
 # Expose FastAPI port
 EXPOSE 8000
 
-# Start FastAPI server
+# Start the FastAPI app
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
