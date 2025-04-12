@@ -50,11 +50,11 @@ jobs:
     - name: Wait for API to start
       run: sleep 10
 
-    - name: Test prediction endpoint
-      run: |
-        curl -X POST http://localhost:8000/predict \
-             -H "Content-Type: application/json" \
-             -d '{"text": "Yeah, great job... not"}'
+    - name: Install requests to test API
+      run: pip install requests
+
+    - name: Run model test script
+      run: python test_model.py
 
     - name: Stop container
       run: docker stop detector && docker rm detector

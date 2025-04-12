@@ -5,7 +5,7 @@ import os
 os.makedirs("app/model", exist_ok=True)
 
 
-pipe = pipeline("text-classification", model="cardiffnlp/twitter-roberta-base-sentiment")
+pipe = pipeline("text-classification", model="mrm8488/t5-base-finetuned-sarcasm-twitter")
 
 
 joblib.dump(pipe, "app/model/sentiment_pipeline.pkl")
