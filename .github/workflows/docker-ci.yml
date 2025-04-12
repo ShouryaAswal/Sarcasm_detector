@@ -1,0 +1,38 @@
+name: Docker CI for Sarcasm Detector
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+
+    - name: Build Docker image
+      run: docker build -t sarcasm-detector ./app
+
+    - name: Run Docker container
+      run: docker run -d -p 8000:8000 --name detector sarcasm-detector
+
+    - name: Wait for container to start
+      run: sleep 10
+
+    - name: Test the /predict endpoint
+      run: |
+        curl -X POST http://localhost:8000/predict \
+             -H "Content-Type: application/json" \
+             -d '{"text": "This is just amazing... not!"}'
+
+    - name: Stop and clean up container
+      run: docker stop detector && docker rm detector
