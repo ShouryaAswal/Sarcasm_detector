@@ -6,7 +6,7 @@ import logging
 app = FastAPI()
 pipe = joblib.load("app/model/sentiment_pipeline.pkl")
 
-# Label mapping
+
 label_map = {
     "LABEL_0": "Negative",
     "LABEL_1": "Neutral",
