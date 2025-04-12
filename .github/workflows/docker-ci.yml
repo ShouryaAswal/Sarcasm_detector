@@ -17,7 +17,8 @@ jobs:
         python-version: '3.9'
 
     - name: Install dependencies
-      run: pip install transformers torch joblib
+      run: |
+        pip install transformers torch joblib tiktoken protobuf sentencepiece
 
     - name: Run model training script
       run: python train_model.py
