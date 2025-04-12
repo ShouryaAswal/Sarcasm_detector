@@ -11,3 +11,5 @@ model = AutoModelForSeq2SeqLM.from_pretrained("mrm8488/t5-base-finetuned-sarcasm
 joblib.dump({"tokenizer": tokenizer, "model": model}, "app/model/sentiment_pipeline.pkl")
 
 print("✅ Model saved.")
+
+#push nothing
