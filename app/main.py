@@ -5,7 +5,7 @@ import logging
 
 app = FastAPI()
 
-# Load model and tokenizer
+
 wrapper = joblib.load("app/model/sentiment_pipeline.pkl")
 tokenizer = wrapper["tokenizer"]
 model = wrapper["model"]
@@ -25,6 +25,6 @@ def predict(input: InputText):
     return {
         "input": input.text,
         "prediction": {
-            "sarcasm": label  # Returns "derison" or "normal"
+            "sarcasm": label  
         }
     }

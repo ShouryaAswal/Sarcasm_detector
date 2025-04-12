@@ -4,7 +4,7 @@ import os
 
 os.makedirs("app/model", exist_ok=True)
 
-# Explicitly disable fast tokenizer to avoid conversion issues
+
 tokenizer = AutoTokenizer.from_pretrained("mrm8488/t5-base-finetuned-sarcasm-twitter", use_fast=False)
 model = AutoModelForSeq2SeqLM.from_pretrained("mrm8488/t5-base-finetuned-sarcasm-twitter")
 
