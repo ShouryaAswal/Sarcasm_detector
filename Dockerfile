@@ -8,7 +8,8 @@ WORKDIR /app
 COPY ./app /app
 COPY train_model.py .
 COPY test_model.py .
-COPY requirements.txt .
+# Change this line to point to the correct requirements.txt location
+COPY ./app/requirements.txt .
 
 # Install dependencies from requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
