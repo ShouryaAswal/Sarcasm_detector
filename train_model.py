@@ -4,7 +4,7 @@ import os
 
 os.makedirs("app/model", exist_ok=True)
 
-pipe = pipeline("text-classification", model="AriEM/sarcasm-detector-roberta")
+pipe = pipeline("text-classification", model="mrm8488/bert-tiny-finetuned-sarcasm")
 joblib.dump(pipe, "app/model/sentiment_pipeline.pkl")
 
 print("✅ Model saved to app/model/sentiment_pipeline.pkl")
